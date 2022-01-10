@@ -106,3 +106,6 @@ dist
 # don't include raw data
 data
 
+# Don't include processed data csv
+processed-data
+.DS_Store

@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/src/index.js",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "postinstall": "tsc",
-    "deploy": "git push heroku main"
+    "deploy": "git push heroku main",
+    "parser": "tsc && cd dist/scripts && node parser.js",
+    "db": "tsc && cd dist/scripts && node db.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "@types/helmet": "^4.0.0",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^17.0.8",
+    "csv-parser": "^3.0.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   }
