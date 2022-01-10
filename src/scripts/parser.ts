@@ -159,7 +159,7 @@ fs.createReadStream("../../data/sentences.csv")
           })
           .on("end", function () {
             /**
-             * Test writing the final translations
+             * Writing the final translations
              */
             fs.writeFile(
               "../../processed-data/translations.json",

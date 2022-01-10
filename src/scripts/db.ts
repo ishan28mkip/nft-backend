@@ -1,36 +1,18 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { Schema, model, connect } from "mongoose";
+import { connect } from "mongoose";
 import mongoose from "mongoose";
 import fs from "fs";
 
-// Interface representing a document in MongoDB
-interface Translation {
-  englishID: string;
-  englishSentence: string;
-  englishURL: string;
-  vietnameseID: string;
-  vietnameseSentence: string;
-}
-
-// Schema corresponding to the document interface
-const schema = new Schema<Translation>({
-  englishID: { type: String, required: true },
-  englishSentence: { type: String, required: true },
-  englishURL: { type: String, required: true },
-  vietnameseID: { type: String, required: true },
-  vietnameseSentence: { type: String, required: true },
-});
-
-// Model
-const TranslationModel = model<Translation>("Translation", schema);
+import { TranslationModel } from "../models/translations";
 
 run().catch((err) => console.log(err));
 
 async function run(): Promise<void> {
   //   MongoDB connection
   const connection = await connect("mongodb://localhost:27017/translations");
+  console.log("DB connected");
   mongoose.connection.collections["translations"].drop(function (err) {
     console.log("Previous data dropped");
     fs.readFile(
@@ -41,7 +23,9 @@ async function run(): Promise<void> {
         const translations = JSON.parse(data);
         TranslationModel.collection.insertMany(translations, function (err, r) {
           if (err) console.log(err);
+          console.log("Current Data Written");
           connection.disconnect();
+          console.log("DB disconnected");
         });
       }
     );
