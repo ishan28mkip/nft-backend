@@ -27,3 +27,6 @@ Run the following command to start the server
 
 For results hit the API where last digit is the page
 `localhost:7000/api/v1/translations/0`
+
+The whole server is written using typescript following MVC architecture. The parser script is well commented
+and the complexity of each action is also shown side by side.
