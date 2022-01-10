@@ -36,7 +36,7 @@ app.use(translationRouter);
  * DB connection
  */
 
-mongoose.connect(`${process.env.DB_URL}`, () => {
+mongoose.connect(`${process.env.DATABASE_URL}`, () => {
   console.log("DB connection successful");
 });
 
