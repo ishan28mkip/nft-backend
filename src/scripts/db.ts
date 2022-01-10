@@ -11,9 +11,7 @@ run().catch((err) => console.log(err));
 
 async function run(): Promise<void> {
   //   MongoDB connection
-  const connection = await connect(
-    "mongodb+srv://translations:vietnam@cluster0.qdrc1.mongodb.net/translations?retryWrites=true&w=majority"
-  );
+  const connection = await connect("mongodb://localhost:27017/translations");
   console.log("DB connected");
   mongoose.connection.collections["translations"].drop(function (err) {
     console.log("Previous data dropped");
